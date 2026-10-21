@@ -920,7 +920,7 @@ function diagText(chatId) {
   t += 'register  : ' + MEM.counters.reg + ' এসেছে · ' + MEM.counters.regOk +
        ' সফল · ' + MEM.counters.regFail + ' ব্যর্থ\n';
   t += 'poll      : ' + MEM.counters.poll + ' · drop ' + MEM.counters.drop + '\n';
-  t += 'drop why  : ' + (dropBreakdown() || ' নেই') + '\n';
+  t += 'drop why  : ' + (dropBreakdown().trim() || 'নেই') + '\n';
   t += 'cmd       : ' + MEM.counters.cmd + ' · callback ' + MEM.counters.cb + '\n';
   t += 'uplink    : ' + (MEM.counters.uplink || 0) +
        (MEM.counters.lastUpAt ? ' · শেষ ' + ago(MEM.counters.lastUpAt) + ' আগে' : '') + '\n';
