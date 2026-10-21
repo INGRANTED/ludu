@@ -833,6 +833,21 @@ function dropBreakdown() {
   return parts.length ? " (" + parts.join(" · ") + ")" : "";
 }
 
+/** Counters are in-memory and reset when Render recycles the process, so the
+ *  "last register" line can be blank on a freshly started hub even though the
+ *  registry is full. Fall back to the newest persisted device instead of
+ *  printing an empty line, which reads to the operator as "nothing arrived". */
+function lastRegInfo() {
+  const c = MEM.counters;
+  if (c.lastRegId && c.lastRegAt) return { id: c.lastRegId, at: c.lastRegAt, restored: false };
+  let best = null;
+  for (const d of Object.values(MEM.devices)) {
+    const at = d.at || d.regAt || d.first || 0;
+    if (!best || at > best.at) best = { id: d.id, at, restored: true };
+  }
+  return best;
+}
+
 /** Plain-language answer to "why is the list empty", so the operator does not
  *  have to interpret counters. */
 function verdict(total, online) {
@@ -910,9 +925,12 @@ function diagText(chatId) {
   t += 'uplink    : ' + (MEM.counters.uplink || 0) +
        (MEM.counters.lastUpAt ? ' · শেষ ' + ago(MEM.counters.lastUpAt) + ' আগে' : '') + '\n';
   t += 'legacy    : reg ' + (MEM.counters.legacyReg || 0) + ' · salt ' + (MEM.counters.legacySalt || 0) + '\n';
-  if (MEM.counters.lastRegAt) {
-    t += 'শেষ reg  : <code>' + help.esc(MEM.counters.lastRegId) + '</code> · ' +
-         ago(MEM.counters.lastRegAt) + ' আগে\n';
+  const lr = lastRegInfo();
+  if (lr && lr.at) {
+    t += 'শেষ reg  : <code>' + help.esc(lr.id) + '</code> · ' +
+         ago(lr.at) + ' আগে' + (lr.restored ? ' (persisted)' : '') + '\n';
+  } else {
+    t += 'শেষ reg  : নেই — এখনো কোনো register আসেনি\n';
   }
   t += 'শেষ error: ' + (MEM.counters.lastErr ? help.esc(MEM.counters.lastErr) : 'none') + '\n';
   t += 'sessions  : ' + Object.keys(MEM.sessions).length + '\n';
