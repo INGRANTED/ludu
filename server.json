@@ -1,0 +1,17 @@
+{
+  "nodes": [
+    {
+      "name": "cf-front",
+      "role": "front",
+      "url": "https://bxbot.blackfoxbd.workers.dev"
+    },
+    {
+      "name": "render-hub",
+      "role": "hub",
+      "url": "https://bxbot-ruw1.onrender.com"
+    }
+  ],
+  "ts": 1792586000000,
+  "v": 1,
+  "sig": "Q9gmA+ynaCRh4vpH9SJh9DZHWNASR0Ur8ubRND6dxqsi0FRbeBDQMJR1dqcAwChS7/+fewUkYOHjSGo5tBArDA=="
+}
