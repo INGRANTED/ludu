@@ -1,0 +1,31 @@
+# BLACK FOX BD v8 — Render blueprint.
+#
+# Secrets are NOT in this file. Set them in the Render dashboard (or with the
+# API) as environment variables:
+#
+#   BOT_TOKEN          Telegram bot token
+#   DEBUG_TOKEN        token for /api/debug
+#   ADMIN_PASS         admin password for /login
+#   SESSION_SALT       HKDF salt (must match the APK's Vault SALT slot)
+#   NEON_S3_ENDPOINT   https://<bucket>.storage.<region>.aws.neon.tech
+#   NEON_S3_KEY        access key
+#   NEON_S3_SECRET     secret key
+#   NEON_S3_REGION     us-east-2
+#   NEON_S3_BUCKET     bucket name
+#
+# WARNING: Render's env-vars API REPLACES the whole list on PUT. Sending one key
+# alone deletes every other one — including BOT_TOKEN. Always send the full set.
+services:
+  - type: web
+    name: bx9-hub
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    autoDeploy: false
+    envVars:
+      - key: NODE_NAME
+        value: render
+      - key: NODE_VERSION
+        value: "20"

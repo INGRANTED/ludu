@@ -1,0 +1,15 @@
+{
+  "name": "bx10-hub",
+  "version": "10.0.0",
+  "private": true,
+  "description": "BLACK FOX BD v10 hub — Telegram bridge, unified dispatcher, Neon S3 persistence",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test-v9.mjs"
+  },
+  "dependencies": {}
+}

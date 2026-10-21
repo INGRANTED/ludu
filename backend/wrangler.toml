@@ -1,0 +1,8 @@
+name = "bxbot"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+
+# The front is stateless: no KV, no D1, no R2. All state lives on the hub.
+# Secrets are set with `wrangler secret put`, never written here.
+[vars]
+NODE_NAME = "cf-front"
