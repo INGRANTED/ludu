@@ -228,7 +228,9 @@ async function tg(method, payload) {
 function remember(chatId, text) {
   const k = String(chatId);
   if (!MEM.replies[k]) MEM.replies[k] = [];
-  MEM.replies[k].push({ t: Date.now(), text: String(text).slice(0, 300) });
+  /* 900 chars: enough to hold a full /diag page, so a report can be verified
+     from /api/debug without asking the operator to copy from the phone. */
+  MEM.replies[k].push({ t: Date.now(), text: String(text).slice(0, 900) });
   if (MEM.replies[k].length > 5) MEM.replies[k].shift();
 }
 
