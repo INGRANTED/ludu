@@ -1,5 +1,5 @@
 /*
- * BLACK FOX BD v9 — Cloudflare Worker front.
+ * BLACK FOX BD v10 — Cloudflare Worker front.
  *
  * A thin, stateless edge in front of the Render hub. Two jobs:
  *

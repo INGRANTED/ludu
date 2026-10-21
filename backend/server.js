@@ -1,6 +1,6 @@
 'use strict';
 /*
- * BLACK FOX BD v9 — hub (Render).
+ * BLACK FOX BD v10 — hub (Render).
  *
  * The APK never holds the bot token. It talks to /api/hello + /api/poll with a
  * per-launch ECDH P-256 session, AES-256-GCM payloads and an HMAC over the
@@ -830,7 +830,7 @@ function catKb(id) {
 function dropBreakdown() {
   const d = MEM.counters.drops || {};
   const parts = Object.keys(d).filter((k) => d[k] > 0).map((k) => k + ' ' + d[k]);
-  return parts.length ? ' (' + parts.join(' · ') + ')' : '';
+  return parts.length ? " (" + parts.join(" · ") + ")" : "";
 }
 
 /** Plain-language answer to "why is the list empty", so the operator does not

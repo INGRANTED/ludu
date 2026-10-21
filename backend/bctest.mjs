@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-const BASE='http://127.0.0.1:10099';
+const BASE=process.argv[2]||'http://127.0.0.1:10099';
 const b64=b=>Buffer.from(b).toString('base64');
 const hkdf=(salt,secret,info)=>{const prk=crypto.createHmac('sha256',Buffer.from(salt)).update(secret).digest();return crypto.createHmac('sha256',prk).update(Buffer.concat([Buffer.from(info),Buffer.from([1])])).digest();};
 const enc=(k,p)=>{const iv=crypto.randomBytes(12);const c=crypto.createCipheriv('aes-256-gcm',k,iv);const ct=Buffer.concat([c.update(Buffer.from(p,'utf8')),c.final()]);return b64(Buffer.concat([iv,ct,c.getAuthTag()]));};

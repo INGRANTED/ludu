@@ -1,6 +1,6 @@
 'use strict';
 /*
- * BLACK FOX BD v9 — Bengali command guide.
+ * BLACK FOX BD v10 — Bengali command guide.
  *
  * Every command the bot accepts lives here exactly once: the help page, the
  * inline keyboard and the dispatcher all read from this table, so a command can
@@ -145,7 +145,7 @@ const DIV = '━━━━━━━━━━━━━━━━';
 
 function homeText(admin, custom) {
   const n = CATS.reduce((a, c) => a + c.cmds.length, 0) + Object.keys(custom || {}).length;
-  let t = '📖 <b>BLACK FOX BD v9 — কমান্ড গাইড</b>\n' + DIV + '\n';
+  let t = '📖 <b>BLACK FOX BD v10 — কমান্ড গাইড</b>\n' + DIV + '\n';
   t += 'মোট ' + n + 'টি কমান্ড, ' + CATS.length + 'টি বিভাগ।\n';
   t += 'নিচের বাটনে চাপুন, অথবা সরাসরি কমান্ড লিখুন — দুটোর ফল একই।\n' + DIV + '\n';
   for (const c of CATS) {

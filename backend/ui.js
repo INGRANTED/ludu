@@ -1,6 +1,6 @@
 'use strict';
 /*
- * BLACK FOX BD v9 — inline keyboard.
+ * BLACK FOX BD v10 — inline keyboard.
  *
  * The single rule that keeps this correct: a button does not own any logic. It
  * carries a command string as callback data, the callback handler feeds that
